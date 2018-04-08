@@ -14,20 +14,20 @@ class App extends React.Component {
       }));
     };
 
-    // highlight-range{1-2,5}
-    // State also contains the updater function so it will
-    // be passed down into the context provider
     this.state = {
       theme: themes.light,
-      toggleTheme: this.toggleTheme,
     };
   }
 
   render() {
-    // highlight-range{1,3}
-    // The entire state is passed to the provider
+    // highlight-range{1-5,7}
+    // The state value and updater function can be passed to the provider
+    const contextValue = {
+      theme: this.state.theme,
+      toggleTheme: this.toggleTheme,
+    };
     return (
-      <ThemeContext.Provider value={this.state}>
+      <ThemeContext.Provider value={contextValue}>
         <Content />
       </ThemeContext.Provider>
     );
